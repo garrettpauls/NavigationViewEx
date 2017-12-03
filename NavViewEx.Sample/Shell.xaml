@@ -1,0 +1,24 @@
+﻿<UserControl
+  x:Class="NavViewEx.Sample.Shell"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:nv="using:NavViewEx"
+  xmlns:pages="using:NavViewEx.Sample.Pages"
+  mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="400"
+  Loaded="_HandleLoaded">
+
+  <nv:NavigationViewEx x:Name="NavView" SettingsPageType="pages:SettingsPage">
+    <nv:NavigationViewEx.MenuItems>
+      <NavigationViewItem Icon="Home" Content="Home" nv:NavigationViewEx.PageType="pages:HomePage"
+                          nv:NavigationViewEx.ClearNavigation="True" />
+      <NavigationViewItem Icon="Page2" Content="Secondary Page" nv:NavigationViewEx.PageType="pages:SecondPage" />
+      <NavigationViewItem Icon="Help" Content="About" nv:NavigationViewEx.PageType="pages:SettingsPage">
+        <nv:NavigationViewEx.PageParameter>
+          <pages:SettingsPageTab>About</pages:SettingsPageTab>
+        </nv:NavigationViewEx.PageParameter>
+      </NavigationViewItem>
+    </nv:NavigationViewEx.MenuItems>
+  </nv:NavigationViewEx>
+</UserControl>
