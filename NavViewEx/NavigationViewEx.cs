@@ -59,5 +59,16 @@ namespace NavViewEx
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
                 NavigationFrame.CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
         }
+
+        protected override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            if (ReadLocalValue(HeaderHeightProperty) != DependencyProperty.UnsetValue &&
+                GetTemplateChild("HeaderContent") is ContentControl headerContent)
+            {
+                headerContent.Height = HeaderHeight;
+            }
+        }
     }
 }
