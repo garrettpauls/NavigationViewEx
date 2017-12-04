@@ -13,6 +13,8 @@ namespace NavViewEx
             "NavigationFrame", typeof(Frame), typeof(NavigationViewEx),
             new PropertyMetadata(default(Frame), _HandleNavigationFrameChanged));
 
+        private FrameworkElement mCurrentFrameContent;
+
         private bool mIsNavigatingInternally;
 
         public Frame NavigationFrame
@@ -29,11 +31,30 @@ namespace NavViewEx
             }
         }
 
+        private void _HandleCurrentFrameContentDataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            _UpdateHeader(
+                sender as INavigationViewExHeaderProvider,
+                sender as INavigationViewExHeaderTemplateProvider);
+        }
+
         private void _HandleFrameNavigated(object sender, NavigationEventArgs e)
         {
             if (!mIsNavigatingInternally)
             {
                 SelectedItem = FindItemForPage(e.SourcePageType);
+            }
+
+            if (mCurrentFrameContent != null)
+            {
+                mCurrentFrameContent.DataContextChanged -= _HandleCurrentFrameContentDataContextChanged;
+                mCurrentFrameContent = null;
+            }
+
+            if (e.Content is FrameworkElement content)
+            {
+                mCurrentFrameContent = content;
+                mCurrentFrameContent.DataContextChanged += _HandleCurrentFrameContentDataContextChanged;
             }
 
             _UpdateHeader(
