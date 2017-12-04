@@ -25,9 +25,14 @@ namespace NavViewEx
                 return;
             }
 
+            _LoadOriginalHeader();
             _UpdateBackButton();
 
             mIsLoaded = true;
+
+            _UpdateHeader(
+                NavigationFrame.Content as INavigationViewExHeaderProvider,
+                NavigationFrame.Content as INavigationViewExHeaderTemplateProvider);
         }
 
         private void _HandleSelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)

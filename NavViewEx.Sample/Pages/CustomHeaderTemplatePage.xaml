@@ -1,0 +1,29 @@
+﻿<Page
+  x:Class="NavViewEx.Sample.Pages.CustomHeaderTemplatePage"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:local="using:NavViewEx.Sample.Pages"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  mc:Ignorable="d">
+  <Page.DataContext>
+    <local:CustomHeaderTemplatePageViewModel x:Name="ViewModel" />
+  </Page.DataContext>
+  <Page.Resources>
+    <DataTemplate x:Name="CustomHeaderTemplate" x:DataType="local:CustomHeaderTemplatePageViewModel">
+      <CommandBar Content="Custom Header Template Example" VerticalContentAlignment="Center">
+        <CommandBar.ContentTemplate>
+          <DataTemplate>
+            <TextBlock Text="{Binding}" Style="{ThemeResource TitleTextBlockStyle}" Margin="4 0" />
+          </DataTemplate>
+        </CommandBar.ContentTemplate>
+        <CommandBar.PrimaryCommands>
+          <AppBarButton Icon="OpenFile" Label="Show file picker" Click="{x:Bind OpenFileClicked}" />
+        </CommandBar.PrimaryCommands>
+      </CommandBar>
+    </DataTemplate>
+  </Page.Resources>
+  <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <TextBlock Text="This page shows an example of a custom header template." />
+  </Grid>
+</Page>

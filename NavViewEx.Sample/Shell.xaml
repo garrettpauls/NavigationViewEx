@@ -9,11 +9,14 @@
   mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="400"
   Loaded="_HandleLoaded">
 
-  <nv:NavigationViewEx x:Name="NavView" SettingsPageType="pages:SettingsPage">
+  <nv:NavigationViewEx x:Name="NavView" SettingsPageType="pages:SettingsPage"
+                       Header="{Binding RelativeSource={RelativeSource Self}, Path=SelectedItem.Content}">
     <nv:NavigationViewEx.MenuItems>
       <NavigationViewItem Icon="Home" Content="Home" nv:NavigationViewEx.PageType="pages:HomePage"
                           nv:NavigationViewEx.ClearNavigation="True" />
       <NavigationViewItem Icon="Page2" Content="Secondary Page" nv:NavigationViewEx.PageType="pages:SecondPage" />
+      <NavigationViewItem Icon="SetTile" Content="Custom Header Template"
+                          nv:NavigationViewEx.PageType="pages:CustomHeaderTemplatePage" />
       <NavigationViewItem Icon="Help" Content="About" nv:NavigationViewEx.PageType="pages:SettingsPage">
         <nv:NavigationViewEx.PageParameter>
           <pages:SettingsPageTab>About</pages:SettingsPageTab>

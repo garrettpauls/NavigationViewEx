@@ -35,6 +35,10 @@ namespace NavViewEx
             {
                 SelectedItem = FindItemForPage(e.SourcePageType);
             }
+
+            _UpdateHeader(
+                e.Content as INavigationViewExHeaderProvider,
+                e.Content as INavigationViewExHeaderTemplateProvider);
         }
 
         private static void _HandleNavigationFrameChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
